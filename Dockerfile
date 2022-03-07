@@ -1,3 +1,4 @@
+# for CUDA 8.0, -devel tag is necessary for libcublas.so.8.0
 ARG CUDA_TAG=8.0-devel-centos7  # or 9.1-runtime-centos7
 FROM nvcr.io/nvidia/cuda:${CUDA_TAG}
 

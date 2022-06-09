@@ -1,23 +1,21 @@
-# Container Image for FSL Eddy With CUDA
+# Ubuntu Container Image for FSL
 
-`eddy_cuda` only supports specific (old) versions of CUDA.
-This repository provides a `Dockerfile` for building
-[FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL)
-inside a container image with
-[CUDA](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/cuda).
+Modification to make FSLeyes to work somehow. Therefore, a lot of unnecessary packages are there. Need to clean and organise at some point. Most CUDA stuff will break with CUDA 11.2. 
 
-Works with Singularity 3.2.1.
+# building
+```
+docker build -t fsl_ubuntu:devel . 
+```
+# singularity conatiner conversion
+The singularity container will end up in  mounted folder (`/home/<user>`) of the host.
 
-https://hub.docker.com/r/fnndsc/fsl
+```
+ docker run -v /var/run/docker.sock:/var/run/docker.sock -v /home/<user>:/output -v /home/<user>:/tmp --privileged -t --rm quay.io/singularity/docker2singularity fsl_ubuntu:devel
 
-## Compatability
+```
 
-We were only able to get this working on **Tesla K80** with CUDA 8.0.
-
-We tried these other cards with both CUDA 8.0 and 9.1 but `eddy_cuda`
-would crash:
-
-- GTX 950
-- TITAN V
-- RTX A6000
+# scp container to cluster
+```
+scp /home/<user>/fsl_ubuntu*.sif <user>@<Cluster IP>:/ptmp/<user>
+```
 

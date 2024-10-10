@@ -6,7 +6,7 @@ RUN apt update && \
    # rm -rf /var/lib/apt/lists/*
 
 # Install some fsl dependencies
-RUN apt update && apt install -y --fix-missing libpng-tools libpng-dev libmng2 libgomp1 libquadmath0 curl python3 python
+RUN apt update && apt install -y --fix-missing libpng-tools libpng-dev libmng2 libgomp1 libquadmath0 curl python3 python bc
 
 
 LABEL org.opencontainers.image.description="FSL with CUDA ${CUDA_TAG}" \
